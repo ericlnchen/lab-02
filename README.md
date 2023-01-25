@@ -17,7 +17,8 @@ Answer for Question 3:
 
 Answer for 2.1:  
   
-    argc is an integer that indicates how many arguments were entered in the command line at execution.  
+    argc is an integer that indicates how many arguments were entered in the command 
+    line at execution.  
       
     argv is an array of pointers to arrays of character objects.  
 
