@@ -24,21 +24,27 @@ Answer for 2.1:
 
 Answer for 2.2:  
   
-    An UNIX file descriptor is an unique number that identifies an open file in a computer's operating system. The descriptor describes a data resource, and how that resource may be accessed.  
+    An UNIX file descriptor is an unique number that identifies an open file in a 
+    computer's operating system. The descriptor describes a data resource, and 
+    how that resource may be accessed.  
       
-    A file descriptor table is the collection of integer array indices that are file descriptors which then have pointers to file table entries.  
+    A file descriptor table is the collection of integer array indices that are file 
+    descriptors which then have pointers to file table entries.  
 
 Answer for 2.3:  
   
     A struct is a way to group several related variables into one object type  
       
-    sockaddr_in is a struct with 4 variables, short sin_family, unsigned short sin_port, struct in_addr sin_addr the in_addr struct then constains one variable unsigned_long s_addr and finally the last variable char* sin_zero  
+    sockaddr_in is a struct with 4 variables, short sin_family, unsigned short sin_port,
+    struct in_addr sin_addr the in_addr struct then constains one variable unsigned_long s_addr 
+    and finally the last variable char* sin_zero  
 
 Answer for 2.4:  
   
     The input parameters are: int domain, int type, and int protocol
   
-    It returns a non-negative integer, the socket file descriptor. Otherwise, a value of -1 is returned to indicate the error.  
+    It returns a non-negative integer, the socket file descriptor. 
+    Otherwise, a value of -1 is returned to indicate the error.  
 
 Answer for 2.5:
   
@@ -48,19 +54,31 @@ Answer for 2.5:
 
 Answer for 2.6:  
   
-     By using while(1) we run infinitely until the code reaches an error. This allows us to continuously communicate through the socket. This approach will run into a problem for multiple simultaneous connections because by having the while(1) to swtich connections we must terminate the current session. Hence we cannot achieve simultaneous connections because we are limited to one live session.  
+     By using while(1) we run infinitely until the code reaches an error. This allows us 
+     to continuously communicate through the socket. This approach will run into a problem 
+     for multiple simultaneous connections because by having the while(1) to swtich 
+     connections we must terminate the current session. Hence we cannot achieve simultaneous 
+     connections because we are limited to one live session.  
 
 Answer for 2.7: 
   
-    The fork() command creates a new process, called the child process, which will then run concurrently with the process that made the fork(), aka the parent process.  
+    The fork() command creates a new process, called the child process, which will 
+    then run concurrently with the process that made the fork(), aka the parent process.  
       
-    By creating a number of child processes at startup, when a new client connection is received, the parent process would assign it to one of the child processes. The child process then handles the communication with the client and the parent process continues listening for new connections. This will ultimately allow the code here to handle multiple connections since we'd have the parent listening and not missing connections and child processes handling the communications so transmission is not stopped.  
+    By creating a number of child processes at startup, when a new client connection is 
+    received, the parent process would assign it to one of the child processes. 
+    The child process then handles the communication with the client and the parent process 
+    continues listening for new connections. This will ultimately allow the code here 
+    to handle multiple connections since we'd have the parent listening and not missing 
+    connections and child processes handling the communications so transmission is not stopped.  
 
 Answer for 2.8:
   
-    A system call is a request made by a program to the operating system to perform a specific task.  
+    A system call is a request made by a program to the operating system 
+    to perform a specific task.  
       
-    In other words to request services from the kernel, we would have to perform system calls. This would then allow the program to use controls of the computer's hardware and system resources.  
+    In other words to request services from the kernel, we would have to perform system calls.
+    This would then allow the program to use controls of the computer's hardware and system resources.  
 
 
 
