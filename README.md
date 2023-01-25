@@ -16,6 +16,7 @@ Answer for Question 3:
     The speed of receiving a transmission is significantly slower with the imposed 50%. Since some packets are lost from the imposed penalty, the TCP re-transmits the message until the other end receives it. But this causes “lag”, and pushes back other transmissions that were already sent on my ends. Hence the loss impacted the speed of TCP transmission.
 
 Answer for 2.1:  
+  
     argc is an integer that indicates how many arguments were entered in the command line at execution.  
       
     argv is an array of pointers to arrays of character objects.  
