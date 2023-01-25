@@ -1,5 +1,3 @@
-// Server side C/C++ program to demonstrate Socket programming 
-// Here's some include statements that might be helpful for you
 #include <string> 
 #include <cstring>
 #include <iostream>
@@ -10,27 +8,29 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
+using namespace std;
+
 int main(int argc, char const *argv[]) 
 { 
-	// check to see if user input is valid
-	char socket_read_buffer[1024];
 	
-	// TODO: Fill out the server ip and port
-	std::string server_ip = "";
-	std::string server_port = "";
+	// Server info
+	string server_ip = "localhost";
+	//string server_ip = "172.20.10.12"; // uncomment this line to communicate with rpi server
+	string server_port = "8881";
 
 	int opt = 1;
-	int client_fd = -1;
+	int tcp_socket = -1;
 
-	// TODO: Create a TCP socket()
+	// Create a TCP socket()
+	tcp_socket = socket(AF_INET, SOCK_STREAM, 0);
 
 	// Enable reusing address and port
-	if (setsockopt(client_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))) { 
+	if (setsockopt(tcp_socket, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))) { 
 		return -1;
 	}
 
 	// Check if the client socket was set up properly
-	if(client_fd == -1){
+	if(tcp_socket == -1){
 		printf("Error- Socket setup failed");
 		return -1;
 	}
@@ -43,11 +43,46 @@ int main(int argc, char const *argv[])
 	hints.ai_socktype = SOCK_STREAM;
 	getaddrinfo(server_ip.c_str(), server_port.c_str(), &hints, &server_addr);
 
-	// TODO: Connect() to the server (hint: you'll need to use server_addr)
-	// TODO: Retreive user input
-	// TODO: Send() the user input to the server
-	// TODO: Recieve any messages from the server and print it here. Don't forget to make sure the string is null terminated!
-	// TODO: Close() the socket
+	// Connects the client socket to server
+	if (connect(tcp_socket, server_addr->ai_addr, sizeof(*server_addr)) != 0) {
+        	cout << "Connection with the server failed..." << endl;
+        	return -1;
+    	}
+    	else{
+    		cout << ("Connected to the server!") << endl;
+    	}
+    	
+    	// Initializes a char array to store the user's message
+    	char usr_msg [1000];
+    	memset(usr_msg, '\0', sizeof(usr_msg)); // Clears the user message buffer
+    
+	
+	// Retreives user input
+	printf("Enter your message: ");
+    	cin >> usr_msg;
+	
+	
+	// Sends the user input to the server
+	if(send(tcp_socket, usr_msg, strlen(usr_msg), 0) < 0){
+		cout << "Unable to send message" << endl;
+		return -1;
+    	}
+	
+	// Recieve any messages from the server and print it here. Don't forget to make sure the string is null terminated!
+	// Initializes a char array to store the server's message
+	char ser_msg[1000];
+	memset(ser_msg, '\0', sizeof(ser_msg));// Clears the server message buffer
+	
+	if(recv(tcp_socket, ser_msg, sizeof(ser_msg), 0) < 0){
+		cout << "Error while receiving server's msg" << endl;
+		return -1;
+    	}
+    	cout << "Server's response: " << ser_msg << endl;
+ 
+    	
+	
+	// Close the socket
+	close(tcp_socket);
 
 	return 0; 
 } 
