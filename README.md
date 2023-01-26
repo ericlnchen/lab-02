@@ -35,22 +35,31 @@ Answer for 2.3:
   
     A struct is a way to group several related variables into one object type  
       
-    sockaddr_in is a struct with 4 variables, short sin_family, unsigned short sin_port,
-    struct in_addr sin_addr the in_addr struct then constains one variable unsigned_long s_addr 
-    and finally the last variable char* sin_zero  
+    sockaddr_in is a struct with 4 variables, 
+    short sin_family (the address family for the transport address), 
+    unsigned short sin_port (the transport protocol port number),
+    struct in_addr (a struct that contains an IPv4 transport address)
+    and finally the last variable char* sin_zero (reserved for system use)  
 
 Answer for 2.4:  
   
-    The input parameters are: int domain, int type, and int protocol
+    The input parameters are: int domain (specifies the address family used), 
+    int type (specifies the type of socket), and int protocol (specifies a particular 
+    protocol to be used)  
   
     It returns a non-negative integer, the socket file descriptor. 
     Otherwise, a value of -1 is returned to indicate the error.  
 
 Answer for 2.5:
   
-    Input parameters of bind: int socket, int address, and int address_len  
+    Input parameters of bind: int socket (specifies the file descriptor of the socket to be bound), 
+    int address (points to a sockaddr structure containing the address to be bound), 
+    and int address_len (pecifies the length of the sockaddr structure pointed to by 
+    the address argument)  
       
-    Input parameters of listen: int socket, int backlog  
+    Input parameters of listen: int socket (specifies the file descriptor of the socket to be bound), 
+    int backlog (provides a hint to the implementation which the implementation 
+    shall use to limit the number of outstanding connections in the socket's listen queue)  
 
 Answer for 2.6:  
   
